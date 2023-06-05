@@ -1,3 +1,7 @@
+/* Programa para el atmega esclavo
+ *
+ * Se usa PULL UP para tod
+ */
 #include <Arduino.h>
 #include <LiquidCrystal_I2C.h>
 #include <VarSpeedServo.h> //La libreria ya esta agregada pero me salta error(?)

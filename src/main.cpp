@@ -1,13 +1,18 @@
 /* Programa para el atmega esclavo
  *
- * Se usa PULL UP para tod
+ * Se usa PULL UP para todo
+ * 
+ * Por un tema de comodidad en el conexionado del maletin, no se usa esta declaracion de pines para probar el programa
  */
 #include <Arduino.h>
 #include <LiquidCrystal_I2C.h>
 #include <VarSpeedServo.h> //La libreria ya esta agregada pero me salta error(?)
 #include <TimerOne.h>
 #include <Wire.h>
-//Todos los pines estan declarados como en la plaqueta
+/* Todos los pines comentados estan declarados como en la plaqueta
+ * Por un tema de comodidad en el conexionado del maletin, no se usa esta declaracion de pines para probar el programa
+
+Los servos van en los pines 3, 5 y 6
 #define infra1 A1 
 #define infra2 A2
 #define infra3 A3
@@ -19,7 +24,20 @@
 #define clockPin 10 //SRCLK
 
 #define incremento A0
-#define inicio 13
+#define inicio 13*/
+
+#define infra1 A0
+#define infra2 A1
+#define infra3 A2
+#define infra4 A3
+#define infra5 4
+
+#define pinLatch 7  //RCLK
+#define clockPin 8 //SRCLK
+#define dataPin 5 //SER - A
+
+#define incremento 10
+#define inicio 12 
 
 VarSpeedServo miservo_1, miservo_2, miservo_3;
 
@@ -56,13 +74,13 @@ void setup(){
   pinMode(clockPin, OUTPUT);
   pinMode(dataPin, OUTPUT);
 
-  miservo_1.attach(3, 350, 2900); //servo base, derecha-izquierda
+  miservo_1.attach(9, 350, 2900); //servo base, derecha-izquierda
   miservo_1.write(grados1); 
 
-  miservo_2.attach(5, 1000, 2000); //servo de la derecha, adelante-atras
+  miservo_2.attach(6, 1000, 2000); //servo de la derecha, adelante-atras
   miservo_2.write(grados2); 
 
-  miservo_3.attach(6, 1000, 2000); //servo de la izqueirda, abajo
+  miservo_3.attach(11, 1000, 2000); //servo de la izqueirda, abajo
   miservo_3.write(grados3);
 
   digitalWrite(pinLatch, LOW);              
